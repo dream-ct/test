@@ -1,0 +1,198 @@
+#include<iostream>
+using namespace std;
+//#include<string>
+//const double PI =3.14;
+//4；类和对象
+//c++面向对象的三大特性为；封装，继承，多态
+//c++认为万事万物皆为对象，对象上有其属性和行为
+//具有相同性质的对象，就可以抽象称为类
+//4.1；封装
+//4.1.1；封装的意义
+//1;将属性和行为作为一个整体，表现生活中的事物
+//2;将属性和行为加以权限控制
+//封装的意义一；在设计类的时候，属性和行为写在一起 ，表现事物
+//语法；class 类名（访问权限；属性/行为）；
+//示例1；设计一个圆类，求圆的周长
+//class代表设计一个类
+class circle{
+	//访问权限
+	//公共权限
+public:
+	//属性
+	int r;
+	//行为
+	//获取圆的周长
+	double calcufmanace(){
+		return 2 * PI*r;
+	}
+};
+int main(){
+	//通过圆类 创建具体的圆（对象）
+	//实例化；（通过一个类创建一个对象的过程）
+	circle c1;
+	//给圆对象的属性进行赋值
+	c1.r = 10;
+	cout << "圆的周长为：" << c1.calcufmanace() << endl;
+	system("pause");
+	return 0;
+}
+
+////设计一个学生类，属性有姓名和学号
+////可以给姓名和学号赋值，可以显示学生的姓名和学号
+//
+////设计学生类
+//class Student{
+//
+//public://公共权限
+//
+//	//类中的属性和行为 我们统一称为 成员
+//	//属性 成员属性 成员变量
+//	//行为 成员函数 成员方法
+//
+//	//属性
+//	string Name;
+//	int Id;
+//	//行为
+//	//显示姓名和学号
+//	void showStudent(){
+//		cout << "姓名：" << Name << " 学号：" << Id << endl;
+//	}
+//
+//	//给姓名赋值
+//	void setName(string name){
+//		Name = name;
+//	}
+//};
+//int main(){
+//	//创建一个具体学生  实例化对象
+//	Student s1;
+//	//给s1对象进行赋值操作
+//	//s1.Name = "张三";
+//	s1.setName("张三");
+//	s1.Id = 1;
+//	//显示学生信息
+//	s1.showStudent();
+//
+//	Student s2;
+//	s2.Name = "李四";
+//	s2.Id = 1;
+//	s2.showStudent();
+//	
+//	system("pause");
+//	return 0;
+//}
+
+//封装意义二；
+//类在设计时，可以把属性和行为放在不同的权限下，加以控制
+//访问权限有三种：
+//1;public 公共权限      成员在类内可以访问,类外也可以访问
+//2:protected 保护权限   成员在类内可以访问,类外不可以访问
+//3:private 私有权限     成员在类内可以访问,类外不可以访问
+
+//class Person{
+//public:
+//	//公共权限
+//	string Name;//姓名
+//
+//protected:
+//	//保护权限
+//	string Car;//汽车
+//
+//private:
+//	//私有权限
+//	int Password;//银行卡密码
+//
+//public:
+//	void func(){
+//		Name = "张三";
+//		Car = "科尼赛克";
+//		Password = 123456;
+//	}
+//};
+//
+//
+//int main(){
+//	//实例化具体对象
+//	Person p1;
+//	p1.Name = "张三";
+//	//p1.Car = "科尼赛克";//保护权限类外不可以访问
+//	//p1.Password = 123456;//私有权限类外不可以访问
+//	p1.func();
+//	system("pause");
+//	return 0;
+//}
+
+//struct和class区别
+//在c++中struct和class唯一的区别就在于默认的访问权限不同
+//struct默认权限为公共    class默认权限为私有
+//class C1{
+//	int A;//默认权限 私有
+//};
+//
+//struct C2{
+//	int A;//默认权限 公共
+//};
+//
+//int main(){
+//	C1 c1;
+//	c1.A = 100;
+//	C2 c2;
+//	c2.A = 100;
+//	system("pause");
+//	return 0;
+//}
+
+//4.1.3成员属性设置为私有
+//优点1：将所有成员属性设置为私有，可以自己控制读写权限
+//优点2；对于写权限，我们可以检测数据的有效性
+
+//设计人类
+//class Person{
+//
+//public:
+//
+//	//设置姓名
+//	void setName(string name){
+//		Name = name;
+//	}
+//	//获取姓名
+//	string getname(){
+//		return Name;
+//	}
+//
+//	int getAge(){
+//		//Age = 0;
+//		return Age;
+//	}
+//	//设置年龄
+//	void setAge(int age){
+//		if (age<0 || age>150){
+//			cout << "你输入年龄错误" << endl;
+//			return;
+//		}
+//		Age = age;
+//	}
+//	//设置情人  只写
+//	void setLover(string lover){
+//		Lover = lover;
+//	}
+//private:
+//	//姓名 可读可写
+//	string Name;
+//	//年龄  只读
+//	int Age;
+//	//情人  只写
+//	string Lover;
+//};
+//
+//int main(){
+//	Person p;
+//	p.setName("张三");
+//	cout << "姓名为:" << p.getname() << endl;
+//
+//	p.setAge(10);
+//	cout << "年龄为：" << p.getAge() << endl;
+//	
+//	p.setLover("空");
+//	//cout << "情人为：" << p.setLover() << endl;//是不可以访问的
+//}
