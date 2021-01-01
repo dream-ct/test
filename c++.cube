@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+
+class Cube{
+
+public:
+	void setL(int l){
+		L = l;
+	}
+	int getL(){
+		return L;
+	}
+
+	void setW(int w){
+		W = w;
+	}
+	int getW(){
+		return W;
+	}
+
+	void setH(int h){
+		H = h;
+	}
+	int getH(){
+		return H;
+	}
+
+	int CalculateS(){
+		return 2 * (L*W + W*H + L*H);
+	}
+
+	int CalculateV(){
+		return L*W*H;
+	}
+	//利用成员函数判断；两个立方体是否相等
+	bool isSameByClass(Cube &c){
+		if (L == c.getL() && W == c.getW() && H == c.getH()){
+			return true;
+		}
+		return false;
+	}
+private:
+	int L;
+	int W;
+	int H;
+};
+bool isSame(Cube &c1, Cube &c2){
+	if (c1.getL() == c2.getL() && c1.getW() == c2.getW() && c1.getH() == c2.getH() ){
+		return true;
+	}
+	return false;
+}
+int main(){
+	Cube c1;
+	c1.setH(1);
+	c1.setW(2);
+	c1.setL(3);
+	cout << "c1的面积为：" << c1.CalculateS() << endl;
+	cout << "c1的体积为：" << c1.CalculateV() << endl;
+
+	Cube c2;
+	c2.setH(1);
+	c2.setW(2);
+	c2.setL(1);
+	cout << "c1的面积为：" << c2.CalculateS() << endl;
+	cout << "c1的体积为：" << c2.CalculateV() << endl;
+	bool ret=isSame(c1, c2);
+	if (ret){
+		cout << "c1与c2相等" << endl;
+	}
+	else
+		cout << "c1与c2不相等" << endl;
+	ret = c1.isSameByClass(c2);
+	if (ret){
+		cout << "成员函数判断：c1与c2相等" << endl;
+	}
+	else
+		cout << "成员函数判断：c1与c2不相等" << endl;
+	system("pause");
+	return 0;
+}
