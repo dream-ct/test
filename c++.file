@@ -1,0 +1,120 @@
+//5、文件操作
+#include<iostream>
+using namespace std;
+#include<fstream>
+#include<string>
+// 5.1
+//文本文件 5.1.1写文件
+//void test01(){
+//	//1、包含头文件
+//	//2、创建流对象
+//	ofstream ofs;
+//	//3、指定打开方式
+//	ofs.open("test.txt", ios::out);
+//	//4、写内容
+//	ofs << "姓名：张三" << endl;
+//	ofs << "性别：男" << endl;
+//	ofs << "年龄：18" << endl;
+//	//5、关闭文件
+//	ofs.close();
+//}
+//int main(){
+//	test01();
+//	return 0;
+//}
+
+// 5.1.2 读文件
+//void test01(){
+//	//1、包含头文件
+//	//2、创建流对象
+//	ifstream ifs;
+//	//3、打开文件 并且判断是否打开成功
+//	ifs.open("test.txt", ios::in);
+//	if (!ifs.is_open()){
+//		cout << "文件打开失败 " << endl;
+//	}
+//	//4、读数据
+//    //第一种
+//	/*char buf[1024] = { 0 };
+//	while (ifs >> buf){
+//		cout << buf << endl;
+//	}*/
+//	//第二种
+//	/*char buf[1024] = { 0 };
+//	while (ifs.getline(buf, sizeof(buf))){
+//		cout << buf << endl;
+//	}*/
+//	//第三种
+//	/*string buf;
+//	while (getline(ifs, buf)){
+//		cout << buf << endl;
+//	}*/
+//	// 第四种
+//	char c;
+//	while ((c = ifs.get()) != EOF){ //EOF end of file
+//		cout << c;
+//	}
+//	//5、关闭文件
+//	ifs.close();
+//}
+//int main(){
+//	test01();
+//	return 0;
+//}
+
+// 5.2 二进制文件
+// 以二进制的方式对文件进行读写操作打开方式要指定为ios::binary
+// 5.2.1写文件
+// 二进制方式写文件主要利用流对象调用成员函数write
+// 函数原型：ostream& write(const char* buffer,int len);
+//class Person{
+//public:
+//	char m_Name[64];//姓名
+//	int m_Age;//年龄
+//};
+//void test01(){
+//	//1、包含头文件
+//	//2、创建流对象
+//	ofstream ofs("person.txt", ios::out | ios::binary);
+//	//3、打开文件
+//	//ofs.open("person.txt",ios::out | ios::binary)
+//	//4、写文件
+//	Person p = { "张三", 18 };
+//	ofs.write((const char*)&p, sizeof(Person));
+//	//5、关闭文件
+//	ofs.close();
+//}
+//int main(){
+//	test01();
+//	return 0;
+//}
+
+//5.2.2读文件
+//二进制方式读文件主要利用流对象调用成员函数read
+//函数原型：ostream& read( char* buffer,int len);
+//参数解释：字符指针buffer指向内存中一段存储空间，len是读写字节数
+class Person{
+public:
+	char m_Name[64];//年龄
+	int m_Age;//年龄
+};
+void test01(){
+	ifstream ifs;
+	ifs.open("person.txt", ios::in | ios::binary);
+	if (!ifs.is_open()){
+		cout << "文件打开失败" << endl;
+		return;
+	}
+	Person p;
+	ifs.read((char*)&p, sizeof(Person));
+	cout << "姓名：" << p.m_Name << "年龄：" << p.m_Age << endl;
+	ifs.close();
+}
+int main(){
+	test01();
+                return 0；
+}
+
+
+
+
